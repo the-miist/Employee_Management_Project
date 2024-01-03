@@ -9,34 +9,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.employee.models.Employee;
 import com.employee.service.ServiceInf;
 
 @RestController
+@RequestMapping("/employee")
 public class EmployeeController {
 
 	@Autowired
 	ServiceInf service;
 	
-	@PostMapping("/employee/save")
+	@PostMapping("/save")
 	public String saveEmployee(@RequestBody Employee employee) {
 		return service.SaveEmployee(employee);
 	}
 	
-	@GetMapping("/employee/fetch")
+	@GetMapping("/fetch")
 	public List<Employee> getEmployees(){
 		return service.getEmployees();
 	}
 	
-	@PutMapping("employee/update")
+	@PutMapping("/update")
 	public Employee updateEmployee(@RequestBody Employee employee) {
 		return service.updateEmployee(employee);
 		
 	}
 	
-	@DeleteMapping("/employee/delete/{id}")
+	@DeleteMapping("/delete/{id}")
 	public List<Employee> deleteEmployee(@PathVariable int id){
 		return service.deleteEmployee(id);
 	}
