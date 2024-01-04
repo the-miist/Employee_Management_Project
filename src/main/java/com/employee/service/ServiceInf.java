@@ -14,5 +14,9 @@ public interface ServiceInf {
 	public List<Employee> deleteEmployee(int id);
 
 	public Employee updateEmployee(Employee employee);
+
+	public List<Employee> getNameAndSurname(String name, String surname);
+
+	public List<Employee> getDistinctName(String name);
 	
 }

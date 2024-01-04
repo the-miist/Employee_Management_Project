@@ -59,4 +59,24 @@ public class EmployeeService implements ServiceInf {
 		}
 	}
 
+	@Override
+	public List<Employee> getNameAndSurname(String name, String surname) {
+		try {
+			return repo.findByNameAndSurname(name, surname);
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+
+	@Override
+	public List<Employee> getDistinctName(String name) {
+		try {
+			return repo.findDistinctByName(name);
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+
 }

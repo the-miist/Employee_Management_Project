@@ -43,4 +43,14 @@ public class EmployeeController {
 		return service.deleteEmployee(id);
 	}
 	
+	@GetMapping("/fetch/{name}/{surname}")
+	public List<Employee> getNameAndSurname(@PathVariable String name,@PathVariable String surname){
+		return service.getNameAndSurname(name,surname);
+	}
+	
+	@GetMapping("/distinct/{name}")
+	public List<Employee> getDistictName (@PathVariable String name){
+		return service.getDistinctName(name);
+	}
+	
 }
