@@ -79,4 +79,14 @@ public class EmployeeService implements ServiceInf {
 		}
 	}
 
+	@Override
+	public List<Employee> getBySalary(int salary) {
+		try {
+			return repo.getBySalary(salary);
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+
 }

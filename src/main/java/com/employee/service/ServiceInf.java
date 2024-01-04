@@ -18,5 +18,7 @@ public interface ServiceInf {
 	public List<Employee> getNameAndSurname(String name, String surname);
 
 	public List<Employee> getDistinctName(String name);
+
+	public List<Employee> getBySalary(int salary);
 	
 }

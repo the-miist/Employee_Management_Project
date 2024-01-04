@@ -53,4 +53,9 @@ public class EmployeeController {
 		return service.getDistinctName(name);
 	}
 	
+	@GetMapping("/fetch/{salary}")
+	public List<Employee> getEmployees(@PathVariable int salary){
+		return service.getBySalary(salary);
+	}
+	
 }
