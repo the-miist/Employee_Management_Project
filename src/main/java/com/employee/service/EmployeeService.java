@@ -47,12 +47,15 @@ public class EmployeeService implements ServiceInf {
 		}
 	}
 
+//	@SuppressWarnings("deprecation")
 	@Override
 	public Employee updateEmployee(Employee employee) {
 		try {
+			Employee dbEmp = repo.findById(employee.getId()).get();
+			employee.setCreationDate(dbEmp.getCreationDate());
 			repo.save(employee);
 			return repo.findById(employee.getId()).get();
-			
+//			return repo.getById(employee.getId());
 		} catch (Exception e) {
 			System.out.println(e);
 			return null;

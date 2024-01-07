@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.employee.models.Employee;
 import com.employee.service.ServiceInf;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -23,7 +25,7 @@ public class EmployeeController {
 	ServiceInf service;
 	
 	@PostMapping("/save")
-	public String saveEmployee(@RequestBody Employee employee) {
+	public String saveEmployee(@RequestBody@Valid Employee employee) {
 		return service.SaveEmployee(employee);
 	}
 	
@@ -33,7 +35,7 @@ public class EmployeeController {
 	}
 	
 	@PutMapping("/update")
-	public Employee updateEmployee(@RequestBody Employee employee) {
+	public Employee updateEmployee(@RequestBody@Valid Employee employee) {
 		return service.updateEmployee(employee);
 		
 	}
