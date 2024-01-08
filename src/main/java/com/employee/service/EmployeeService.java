@@ -1,10 +1,12 @@
 package com.employee.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.employee.Exceptions.userNotFoundException;
 import com.employee.models.Employee;
 import com.employee.repo.EmployeeRepo;
 
@@ -38,28 +40,25 @@ public class EmployeeService implements ServiceInf {
 
 	@Override
 	public List<Employee> deleteEmployee(int id) {
-		try {
-			repo.deleteById(id);
-			return repo.findAll();
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
+			Optional<Employee> emp =repo.findById(id);
+			if (emp.isPresent()) {
+				repo.deleteById(id);
+				return repo.findAll();
+			} else {
+				throw new userNotFoundException("Employee not Found");
+			}
 	}
 
-//	@SuppressWarnings("deprecation")
 	@Override
 	public Employee updateEmployee(Employee employee) {
-		try {
-			Employee dbEmp = repo.findById(employee.getId()).get();
-			employee.setCreationDate(dbEmp.getCreationDate());
+			Optional<Employee> dbEmp = repo.findById(employee.getId());
+			if (dbEmp.isPresent()) {
+			employee.setCreationDate(dbEmp.get().getCreationDate());
 			repo.save(employee);
 			return repo.findById(employee.getId()).get();
-//			return repo.getById(employee.getId());
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
+			} else {
+				throw new userNotFoundException("Employee not Found");
+			}
 	}
 
 	@Override

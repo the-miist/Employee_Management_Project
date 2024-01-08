@@ -1,13 +1,9 @@
 package com.employee.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -62,16 +58,6 @@ public class EmployeeController {
 	@GetMapping("/fetch/{salary}")
 	public List<Employee> getEmployees(@PathVariable int salary){
 		return service.getBySalary(salary);
-	}
-	
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public Map<String,String> handleValidationException(MethodArgumentNotValidException ex){
-		
-		Map<String, String> errors= new HashMap<String, String>();
-		ex.getBindingResult().getFieldErrors().forEach((error)->{
-			errors.put(error.getField(), error.getDefaultMessage());
-		});
-		return errors;
 	}
 	
 }
